@@ -1,4 +1,4 @@
-﻿namespace SmartMedERP.Forms
+﻿namespace SmartMed.Forms
 {
     partial class CategoryForm
     {
@@ -52,7 +52,6 @@
             this.lblTitle.Size = new System.Drawing.Size(320, 45);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Manage Categories";
-            this.lblTitle.Click += new System.EventHandler(this.label1_Click);
             // 
             // lblCategoryName
             // 
@@ -214,7 +213,7 @@
             this.txtSearch.SelectedText = "";
             this.txtSearch.Size = new System.Drawing.Size(300, 40);
             this.txtSearch.TabIndex = 10;
-            this.txtSearch.DoubleClick += new System.EventHandler(this.TextChanged);
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // dgvCategories
             // 
@@ -229,7 +228,7 @@
             this.dgvCategories.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCategories.Size = new System.Drawing.Size(900, 260);
             this.dgvCategories.TabIndex = 11;
-            this.dgvCategories.DoubleClick += new System.EventHandler(this.CellClick);
+            this.dgvCategories.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCategories_CellClick);
             // 
             // CategoryForm
             // 
