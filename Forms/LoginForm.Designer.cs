@@ -144,6 +144,7 @@
             this.chkRememberMe.CheckedState.BorderRadius = 0;
             this.chkRememberMe.CheckedState.BorderThickness = 0;
             this.chkRememberMe.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.chkRememberMe.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
             this.chkRememberMe.Location = new System.Drawing.Point(59, 291);
             this.chkRememberMe.Name = "chkRememberMe";
             this.chkRememberMe.Size = new System.Drawing.Size(119, 20);

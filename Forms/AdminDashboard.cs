@@ -21,26 +21,9 @@ namespace SmartMed.Forms
             }
         }
 
-
-        private void button1_Click_1(object sender, EventArgs e)
+        private void guna2Panel1_Paint(object sender, PaintEventArgs e)
         {
-        
-                string hash = PasswordHasher.HashPassword("Admin@123");
-                MessageBox.Show(hash);
-            
+
         }
-
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-                 SessionManager.CurrentUser = null;
-
-            LoginForm login =
-                new LoginForm();
-
-            login.Show();
-
-            this.Close();
-        }
-        
     }
 }

@@ -29,50 +29,59 @@
         private void InitializeComponent()
         {
             this.lblLoggedUser = new System.Windows.Forms.Label();
-            this.btnLogout = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.pnlSidebar = new Guna.UI2.WinForms.Guna2Panel();
+            this.lblAppName = new System.Windows.Forms.Label();
+            this.pnlSidebar.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblLoggedUser
             // 
             this.lblLoggedUser.AutoSize = true;
-            this.lblLoggedUser.Location = new System.Drawing.Point(70, 51);
+            this.lblLoggedUser.Location = new System.Drawing.Point(121, 51);
             this.lblLoggedUser.Name = "lblLoggedUser";
             this.lblLoggedUser.Size = new System.Drawing.Size(44, 16);
             this.lblLoggedUser.TabIndex = 0;
             this.lblLoggedUser.Text = "label1";
             // 
-            // btnLogout
+            // pnlSidebar
             // 
-            this.btnLogout.Location = new System.Drawing.Point(104, 186);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(200, 90);
-            this.btnLogout.TabIndex = 1;
-            this.btnLogout.Text = "button1";
-            this.btnLogout.UseVisualStyleBackColor = true;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            this.pnlSidebar.Controls.Add(this.lblAppName);
+            this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlSidebar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
+            this.pnlSidebar.Location = new System.Drawing.Point(0, 0);
+            this.pnlSidebar.Name = "pnlSidebar";
+            this.pnlSidebar.Size = new System.Drawing.Size(230, 653);
+            this.pnlSidebar.TabIndex = 1;
+            this.pnlSidebar.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel1_Paint);
             // 
-            // button1
+            // lblAppName
             // 
-            this.button1.Location = new System.Drawing.Point(419, 132);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(89, 86);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.lblAppName.AutoSize = true;
+            this.lblAppName.BackColor = System.Drawing.Color.Transparent;
+            this.lblAppName.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAppName.Location = new System.Drawing.Point(10, 16);
+            this.lblAppName.Name = "lblAppName";
+            this.lblAppName.Size = new System.Drawing.Size(214, 38);
+            this.lblAppName.TabIndex = 2;
+            this.lblAppName.Text = "SmartMed ERP";
             // 
             // AdminDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnLogout);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(1182, 653);
+            this.Controls.Add(this.pnlSidebar);
             this.Controls.Add(this.lblLoggedUser);
+            this.ForeColor = System.Drawing.Color.White;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "AdminDashboard";
-            this.Text = "AdminDashboard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "SmartMed ERP - Admin Dashboard";
             this.Load += new System.EventHandler(this.AdminDashboard_Load);
+            this.pnlSidebar.ResumeLayout(false);
+            this.pnlSidebar.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -81,7 +90,7 @@
         #endregion
 
         private System.Windows.Forms.Label lblLoggedUser;
-        private System.Windows.Forms.Button btnLogout;
-        private System.Windows.Forms.Button button1;
+        private Guna.UI2.WinForms.Guna2Panel pnlSidebar;
+        private System.Windows.Forms.Label lblAppName;
     }
 }
