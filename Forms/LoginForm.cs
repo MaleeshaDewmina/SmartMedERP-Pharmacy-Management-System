@@ -1,12 +1,15 @@
 ﻿using System;
-using System.Data.SqlClient;
 using System.Windows.Forms;
 using SmartMedERP.Models;
 using SmartMedERP.Services;
-using SmartMedERP.Utilities;
 
 namespace SmartMed.Forms
 {
+    /*
+     * Handles user login for the SmartMed ERP system.
+     * This form validates login input, authenticates users,
+     * creates the active session and redirects users based on role.
+     */
     public partial class LoginForm : Form
     {
         public LoginForm()
@@ -24,10 +27,14 @@ namespace SmartMed.Forms
 
         }
 
+        // Validates login details and authenticates the user.
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string username = txtUsername.Text.Trim();
-            string password = txtPassword.Text.Trim();
+            string username =
+                txtUsername.Text.Trim();
+
+            string password =
+                txtPassword.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(username))
             {
@@ -68,6 +75,10 @@ namespace SmartMed.Forms
                 return;
             }
 
+            /*
+             * Store logged-in user details in SessionManager.
+             * Other forms use this session to check user ID, username and role.
+             */
             SessionManager.CurrentUser =
                 new UserSession
                 {
@@ -76,6 +87,14 @@ namespace SmartMed.Forms
                     RoleName = user.RoleName
                 };
 
+            AuditLogService auditLogService =
+                new AuditLogService();
+
+            auditLogService.Log(
+                "Login",
+                "Authentication",
+                "User logged in successfully.");
+
             MessageBox.Show(
                 "Login Successful!",
                 "Success",
@@ -83,17 +102,14 @@ namespace SmartMed.Forms
                 MessageBoxIcon.Information);
 
             OpenDashboard(user.RoleName);
-
-            
         }
-
-        
 
         private void pnlLogin_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
+        // Opens the correct dashboard based on the logged-in user's role.
         private void OpenDashboard(string role)
         {
             this.Hide();
@@ -130,25 +146,14 @@ namespace SmartMed.Forms
             }
         }
 
+        /*
+         * This event is kept to avoid designer errors if the button still exists.
+         * The previous hardcoded admin password reset code was removed for security.
+         */
         private void button1_Click(object sender, EventArgs e)
         {
-            string hash = PasswordHasher.HashPassword("Admin@123");
-
-            using (SqlConnection con = SmartMedERP.Data.Database.GetConnection())
-            {
-                con.Open();
-
-                SqlCommand cmd = new SqlCommand(
-                    "UPDATE Users SET PasswordHash = @Hash WHERE Username = @Username",
-                    con);
-
-                cmd.Parameters.AddWithValue("@Hash", hash);
-                cmd.Parameters.AddWithValue("@Username", "admin");
-
-                int rows = cmd.ExecuteNonQuery();
-
-                MessageBox.Show("Password reset done. Rows updated: " + rows);
-            }
+            MessageBox.Show(
+                "This development function has been disabled.");
         }
 
         private void lblWelcome_Click(object sender, EventArgs e)
@@ -156,7 +161,18 @@ namespace SmartMed.Forms
 
         }
 
+        // Opens the customer registration form.
         private void btnRegister_Click(object sender, EventArgs e)
+        {
+            RegisterForm registerForm =
+                new RegisterForm();
+
+            registerForm.Show();
+
+            this.Hide();
+        }
+
+        private void lnkForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
         }

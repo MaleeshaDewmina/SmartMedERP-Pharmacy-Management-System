@@ -5,14 +5,24 @@ using SmartMedERP.Models;
 
 namespace SmartMedERP.Repositories
 {
+    /*
+     * Handles database operations for medicine inventory.
+     * This repository supports medicine listing, searching,
+     * adding, updating and soft deleting.
+     */
     public class MedicineRepository
     {
+        // Loads all non-deleted medicines with category and supplier details.
         public DataTable GetAllMedicines()
         {
             using (SqlConnection con = Database.GetConnection())
             {
                 con.Open();
 
+                /*
+                 * Categories and Suppliers are joined to show readable names
+                 * instead of only foreign key IDs.
+                 */
                 string query = @"
                     SELECT 
                         M.MedicineId,
@@ -50,6 +60,7 @@ namespace SmartMedERP.Repositories
             }
         }
 
+        // Searches medicines by name, category, supplier or barcode.
         public DataTable SearchMedicines(string keyword)
         {
             using (SqlConnection con = Database.GetConnection())
@@ -94,6 +105,8 @@ namespace SmartMedERP.Repositories
                     ORDER BY M.MedicineId DESC";
 
                 SqlCommand cmd = new SqlCommand(query, con);
+
+                // Parameterized search prevents SQL injection.
                 cmd.Parameters.AddWithValue("@Keyword", "%" + keyword + "%");
 
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -104,12 +117,17 @@ namespace SmartMedERP.Repositories
             }
         }
 
+        // Adds a new medicine record to the inventory.
         public void AddMedicine(Medicine medicine)
         {
             using (SqlConnection con = Database.GetConnection())
             {
                 con.Open();
 
+                /*
+                 * IsDeleted is set to 0 because this is a new active inventory record.
+                 * Soft delete is used instead of permanently removing medicines.
+                 */
                 string query = @"
                     INSERT INTO Medicines
                     (
@@ -181,6 +199,7 @@ namespace SmartMedERP.Repositories
             }
         }
 
+        // Updates an existing medicine record.
         public void UpdateMedicine(Medicine medicine)
         {
             using (SqlConnection con = Database.GetConnection())
@@ -236,6 +255,7 @@ namespace SmartMedERP.Repositories
             }
         }
 
+        // Soft deletes a medicine by marking it as deleted.
         public void DeleteMedicine(int medicineId)
         {
             using (SqlConnection con = Database.GetConnection())

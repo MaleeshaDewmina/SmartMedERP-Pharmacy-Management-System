@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SupplierForm));
             this.dgvSuppliers = new System.Windows.Forms.DataGridView();
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnClear = new Guna.UI2.WinForms.Guna2Button();
@@ -309,6 +310,7 @@
             this.Controls.Add(this.txtSupplierName);
             this.Controls.Add(this.lblSupplierName);
             this.Controls.Add(this.lblTitle);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SupplierForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage Suppliers";

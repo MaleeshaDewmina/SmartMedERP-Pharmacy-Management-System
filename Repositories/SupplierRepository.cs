@@ -5,19 +5,28 @@ using SmartMedERP.Models;
 
 namespace SmartMedERP.Repositories
 {
+    /*
+     * Handles database operations for supplier management.
+     * This repository supports supplier listing, searching,
+     * adding, updating and deleting supplier records.
+     */
     public class SupplierRepository
     {
+        // Loads all suppliers from the database.
         public DataTable GetAllSuppliers()
         {
             using (SqlConnection con = Database.GetConnection())
             {
                 con.Open();
 
-                string query = "SELECT * FROM Suppliers ORDER BY SupplierId DESC";
+                string query =
+                    "SELECT * FROM Suppliers ORDER BY SupplierId DESC";
 
-                SqlDataAdapter adapter = new SqlDataAdapter(query, con);
+                SqlDataAdapter adapter =
+                    new SqlDataAdapter(query, con);
 
-                DataTable table = new DataTable();
+                DataTable table =
+                    new DataTable();
 
                 adapter.Fill(table);
 
@@ -25,6 +34,7 @@ namespace SmartMedERP.Repositories
             }
         }
 
+        // Searches suppliers by name, phone, email or address.
         public DataTable SearchSuppliers(string keyword)
         {
             using (SqlConnection con = Database.GetConnection())
@@ -39,13 +49,19 @@ namespace SmartMedERP.Repositories
                     OR Address LIKE @Keyword
                     ORDER BY SupplierId DESC";
 
-                SqlCommand cmd = new SqlCommand(query, con);
+                SqlCommand cmd =
+                    new SqlCommand(query, con);
 
-                cmd.Parameters.AddWithValue("@Keyword", "%" + keyword + "%");
+                // Parameterized search prevents SQL injection.
+                cmd.Parameters.AddWithValue(
+                    "@Keyword",
+                    "%" + keyword + "%");
 
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                SqlDataAdapter adapter =
+                    new SqlDataAdapter(cmd);
 
-                DataTable table = new DataTable();
+                DataTable table =
+                    new DataTable();
 
                 adapter.Fill(table);
 
@@ -53,6 +69,7 @@ namespace SmartMedERP.Repositories
             }
         }
 
+        // Adds a new supplier record.
         public void AddSupplier(Supplier supplier)
         {
             using (SqlConnection con = Database.GetConnection())
@@ -65,7 +82,8 @@ namespace SmartMedERP.Repositories
                     VALUES
                     (@SupplierName, @Phone, @Email, @Address)";
 
-                SqlCommand cmd = new SqlCommand(query, con);
+                SqlCommand cmd =
+                    new SqlCommand(query, con);
 
                 cmd.Parameters.AddWithValue("@SupplierName", supplier.SupplierName);
                 cmd.Parameters.AddWithValue("@Phone", supplier.Phone);
@@ -76,6 +94,7 @@ namespace SmartMedERP.Repositories
             }
         }
 
+        // Updates an existing supplier record.
         public void UpdateSupplier(Supplier supplier)
         {
             using (SqlConnection con = Database.GetConnection())
@@ -90,7 +109,8 @@ namespace SmartMedERP.Repositories
                         Address = @Address
                     WHERE SupplierId = @SupplierId";
 
-                SqlCommand cmd = new SqlCommand(query, con);
+                SqlCommand cmd =
+                    new SqlCommand(query, con);
 
                 cmd.Parameters.AddWithValue("@SupplierId", supplier.SupplierId);
                 cmd.Parameters.AddWithValue("@SupplierName", supplier.SupplierName);
@@ -102,6 +122,7 @@ namespace SmartMedERP.Repositories
             }
         }
 
+        // Deletes a supplier by SupplierId.
         public void DeleteSupplier(int supplierId)
         {
             using (SqlConnection con = Database.GetConnection())
@@ -111,7 +132,8 @@ namespace SmartMedERP.Repositories
                 string query =
                     "DELETE FROM Suppliers WHERE SupplierId = @SupplierId";
 
-                SqlCommand cmd = new SqlCommand(query, con);
+                SqlCommand cmd =
+                    new SqlCommand(query, con);
 
                 cmd.Parameters.AddWithValue("@SupplierId", supplierId);
 

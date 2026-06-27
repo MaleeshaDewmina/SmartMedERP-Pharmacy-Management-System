@@ -1,11 +1,14 @@
 ﻿using System;
-using System.Windows.Controls;
 using System.Windows.Forms;
 using SmartMedERP.Models;
 using SmartMedERP.Repositories;
 
 namespace SmartMed.Forms
 {
+    /*
+     * Handles supplier management.
+     * Admin users can add, update, delete and search supplier records.
+     */
     public partial class SupplierForm : Form
     {
         private readonly SupplierRepository supplierRepository =
@@ -23,12 +26,14 @@ namespace SmartMed.Forms
             LoadSuppliers();
         }
 
+        // Loads all supplier records into the grid.
         private void LoadSuppliers()
         {
             dgvSuppliers.DataSource =
                 supplierRepository.GetAllSuppliers();
         }
 
+        // Clears all input fields and resets selected supplier data.
         private void ClearFields()
         {
             selectedSupplierId = 0;
@@ -40,6 +45,7 @@ namespace SmartMed.Forms
             txtSupplierName.Focus();
         }
 
+        // Validates required supplier input.
         private bool ValidateFields()
         {
             if (string.IsNullOrWhiteSpace(txtSupplierName.Text))
@@ -52,6 +58,7 @@ namespace SmartMed.Forms
             return true;
         }
 
+        // Saves a new supplier record.
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (!ValidateFields())
@@ -73,6 +80,7 @@ namespace SmartMed.Forms
             ClearFields();
         }
 
+        // Updates the selected supplier record.
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (selectedSupplierId == 0)
@@ -101,6 +109,7 @@ namespace SmartMed.Forms
             ClearFields();
         }
 
+        // Deletes the selected supplier after confirmation.
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (selectedSupplierId == 0)
@@ -127,12 +136,14 @@ namespace SmartMed.Forms
             }
         }
 
+        // Clears form fields and reloads all supplier records.
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearFields();
             LoadSuppliers();
         }
 
+        // Searches suppliers while the admin types.
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             string keyword = txtSearch.Text.Trim();
@@ -143,6 +154,7 @@ namespace SmartMed.Forms
                 : supplierRepository.SearchSuppliers(keyword);
         }
 
+        // Loads selected supplier details into the input fields.
         private void dgvSuppliers_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)

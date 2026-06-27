@@ -9,6 +9,11 @@ using iTextSharp.text.pdf;
 
 namespace SmartMed.Forms
 {
+    /*
+     * Generates pharmacy reports for admin users.
+     * Supported reports include sales, inventory, low stock and expiry reports.
+     * Reports can also be exported as PDF files.
+     */
     public partial class ReportsForm : Form
     {
         private readonly ReportRepository reportRepository =
@@ -40,6 +45,7 @@ namespace SmartMed.Forms
             GenerateReport();
         }
 
+        // Generates the selected report and displays it in the grid.
         private void GenerateReport()
         {
             string reportType =
@@ -55,6 +61,7 @@ namespace SmartMed.Forms
                         dtpFromDate.Value,
                         dtpToDate.Value);
 
+                // Sales summary is shown only for the sales report.
                 ReportSummary summary =
                     reportRepository.GetSalesSummary(
                         dtpFromDate.Value,
@@ -94,6 +101,7 @@ namespace SmartMed.Forms
             dgvReports.DataSource = reportData;
         }
 
+        // Clears sales summary labels when the selected report is not sales-based.
         private void ClearSummary()
         {
             lblTotalSales.Text = "N/A";
@@ -101,6 +109,7 @@ namespace SmartMed.Forms
             lblTotalRevenue.Text = "N/A";
         }
 
+        // Allows the generated report to be exported as a PDF file.
         private void btnExportPdf_Click(object sender, EventArgs e)
         {
             if (dgvReports.Rows.Count == 0)
@@ -128,6 +137,7 @@ namespace SmartMed.Forms
             }
         }
 
+        // Converts the report grid data into a PDF document using iTextSharp.
         private void ExportDataGridViewToPdf(
             DataGridView dgv,
             string filePath,
@@ -156,7 +166,8 @@ namespace SmartMed.Forms
 
             document.Add(
                 new Paragraph(
-                    "Generated Date: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm")));
+                    "Generated Date: " +
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm")));
 
             document.Add(
                 new Paragraph(" "));
@@ -166,6 +177,7 @@ namespace SmartMed.Forms
 
             table.WidthPercentage = 100;
 
+            // Add DataGridView column headers to the PDF table.
             foreach (DataGridViewColumn column in dgv.Columns)
             {
                 PdfPCell cell =
@@ -179,6 +191,7 @@ namespace SmartMed.Forms
                 table.AddCell(cell);
             }
 
+            // Add report row values to the PDF table.
             foreach (DataGridViewRow row in dgv.Rows)
             {
                 if (!row.IsNewRow)

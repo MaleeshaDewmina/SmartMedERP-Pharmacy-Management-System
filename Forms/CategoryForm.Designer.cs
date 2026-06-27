@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CategoryForm));
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblCategoryName = new System.Windows.Forms.Label();
             this.txtCategoryName = new Guna.UI2.WinForms.Guna2TextBox();
@@ -248,6 +249,7 @@
             this.Controls.Add(this.txtCategoryName);
             this.Controls.Add(this.lblCategoryName);
             this.Controls.Add(this.lblTitle);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CategoryForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage Categories";

@@ -8,6 +8,10 @@ using SmartMedERP.Repositories;
 
 namespace SmartMed.Forms
 {
+    /*
+     * Handles medicine inventory management.
+     * Admin users can add, update, search and soft delete medicines.
+     */
     public partial class MedicineForm : Form
     {
         private readonly MedicineRepository medicineRepository =
@@ -29,6 +33,7 @@ namespace SmartMed.Forms
             chkIsActive.Checked = true;
         }
 
+        // Loads active categories into the category combo box.
         private void LoadCategories()
         {
             using (SqlConnection con = Database.GetConnection())
@@ -49,6 +54,7 @@ namespace SmartMed.Forms
             }
         }
 
+        // Loads suppliers into the supplier combo box.
         private void LoadSuppliers()
         {
             using (SqlConnection con = Database.GetConnection())
@@ -69,12 +75,14 @@ namespace SmartMed.Forms
             }
         }
 
+        // Loads all medicines into the grid.
         private void LoadMedicines()
         {
             dgvMedicines.DataSource =
                 medicineRepository.GetAllMedicines();
         }
 
+        // Clears all input fields and resets the form.
         private void ClearFields()
         {
             selectedMedicineId = 0;
@@ -108,6 +116,7 @@ namespace SmartMed.Forms
             txtMedicineName.Focus();
         }
 
+        // Validates medicine input before saving or updating.
         private bool ValidateFields()
         {
             if (string.IsNullOrWhiteSpace(txtMedicineName.Text))
@@ -118,7 +127,8 @@ namespace SmartMed.Forms
             }
 
             decimal costPrice;
-            if (!decimal.TryParse(txtCostPrice.Text.Trim(), out costPrice) || costPrice < 0)
+            if (!decimal.TryParse(txtCostPrice.Text.Trim(), out costPrice) ||
+                costPrice < 0)
             {
                 MessageBox.Show("Please enter valid cost price.");
                 txtCostPrice.Focus();
@@ -126,7 +136,8 @@ namespace SmartMed.Forms
             }
 
             decimal sellingPrice;
-            if (!decimal.TryParse(txtSellingPrice.Text.Trim(), out sellingPrice) || sellingPrice < 0)
+            if (!decimal.TryParse(txtSellingPrice.Text.Trim(), out sellingPrice) ||
+                sellingPrice < 0)
             {
                 MessageBox.Show("Please enter valid selling price.");
                 txtSellingPrice.Focus();
@@ -134,7 +145,9 @@ namespace SmartMed.Forms
             }
 
             decimal tax;
-            if (!decimal.TryParse(txtTaxPercentage.Text.Trim(), out tax) || tax < 0 || tax > 100)
+            if (!decimal.TryParse(txtTaxPercentage.Text.Trim(), out tax) ||
+                tax < 0 ||
+                tax > 100)
             {
                 MessageBox.Show("Please enter valid tax percentage between 0 and 100.");
                 txtTaxPercentage.Focus();
@@ -142,7 +155,9 @@ namespace SmartMed.Forms
             }
 
             decimal discount;
-            if (!decimal.TryParse(txtDiscountPercentage.Text.Trim(), out discount) || discount < 0 || discount > 100)
+            if (!decimal.TryParse(txtDiscountPercentage.Text.Trim(), out discount) ||
+                discount < 0 ||
+                discount > 100)
             {
                 MessageBox.Show("Please enter valid discount percentage between 0 and 100.");
                 txtDiscountPercentage.Focus();
@@ -150,7 +165,8 @@ namespace SmartMed.Forms
             }
 
             int stock;
-            if (!int.TryParse(txtStockQuantity.Text.Trim(), out stock) || stock < 0)
+            if (!int.TryParse(txtStockQuantity.Text.Trim(), out stock) ||
+                stock < 0)
             {
                 MessageBox.Show("Please enter valid stock quantity.");
                 txtStockQuantity.Focus();
@@ -158,13 +174,15 @@ namespace SmartMed.Forms
             }
 
             int reorder;
-            if (!int.TryParse(txtReorderLevel.Text.Trim(), out reorder) || reorder < 0)
+            if (!int.TryParse(txtReorderLevel.Text.Trim(), out reorder) ||
+                reorder < 0)
             {
                 MessageBox.Show("Please enter valid reorder level.");
                 txtReorderLevel.Focus();
                 return false;
             }
 
+            // Expired medicines cannot be added as active inventory.
             if (dtpExpiryDate.Value.Date <= DateTime.Today)
             {
                 MessageBox.Show("Expiry date must be a future date.");
@@ -175,6 +193,7 @@ namespace SmartMed.Forms
             return true;
         }
 
+        // Creates a Medicine model object using form input values.
         private Medicine GetMedicineFromForm()
         {
             return new Medicine
@@ -201,6 +220,7 @@ namespace SmartMed.Forms
             };
         }
 
+        // Saves a new medicine record.
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (!ValidateFields())
@@ -216,6 +236,7 @@ namespace SmartMed.Forms
             ClearFields();
         }
 
+        // Updates the selected medicine record.
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (selectedMedicineId == 0)
@@ -237,6 +258,7 @@ namespace SmartMed.Forms
             ClearFields();
         }
 
+        // Soft deletes the selected medicine after confirmation.
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (selectedMedicineId == 0)
@@ -263,12 +285,14 @@ namespace SmartMed.Forms
             }
         }
 
+        // Clears the form and reloads medicine records.
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearFields();
             LoadMedicines();
         }
 
+        // Searches medicines while the admin types.
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             string keyword = txtSearch.Text.Trim();
@@ -279,6 +303,7 @@ namespace SmartMed.Forms
                 : medicineRepository.SearchMedicines(keyword);
         }
 
+        // Loads selected medicine data into the form fields.
         private void dgvMedicines_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)

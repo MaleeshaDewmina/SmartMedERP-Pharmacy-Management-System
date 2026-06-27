@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderForm));
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblCustomer = new System.Windows.Forms.Label();
             this.cmbCustomer = new System.Windows.Forms.ComboBox();
@@ -56,7 +57,7 @@
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Location = new System.Drawing.Point(30, 20);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(266, 46);
+            this.lblTitle.Size = new System.Drawing.Size(259, 45);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Manage Orders";
             // 
@@ -300,6 +301,7 @@
             this.Controls.Add(this.cmbCustomer);
             this.Controls.Add(this.lblCustomer);
             this.Controls.Add(this.lblTitle);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "OrderForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage Orders";

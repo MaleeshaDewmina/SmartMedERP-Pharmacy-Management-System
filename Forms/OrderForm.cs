@@ -8,6 +8,11 @@ using SmartMedERP.Services;
 
 namespace SmartMed.Forms
 {
+    /*
+     * Handles admin-side order creation.
+     * Admin users can select a customer, add medicines to a cart,
+     * calculate totals and place an order.
+     */
     public partial class OrderForm : Form
     {
         private readonly OrderRepository orderRepository =
@@ -37,6 +42,7 @@ namespace SmartMed.Forms
             UpdateTotals();
         }
 
+        // Loads customers into the customer combo box.
         private void LoadCustomers()
         {
             cmbCustomer.DataSource =
@@ -46,6 +52,7 @@ namespace SmartMed.Forms
             cmbCustomer.ValueMember = "CustomerId";
         }
 
+        // Loads available medicines into the medicine combo box.
         private void LoadMedicines()
         {
             cmbMedicine.DataSource =
@@ -55,18 +62,21 @@ namespace SmartMed.Forms
             cmbMedicine.ValueMember = "MedicineId";
         }
 
+        // Prepares the cart grid for displaying selected order items.
         private void SetupCartGrid()
         {
             dgvCart.AutoGenerateColumns = true;
             dgvCart.DataSource = null;
         }
 
+        // Refreshes the cart grid after items are added or cleared.
         private void RefreshCart()
         {
             dgvCart.DataSource = null;
             dgvCart.DataSource = cartItems;
         }
 
+        // Calculates subtotal, discount, tax, delivery fee and grand total.
         private void UpdateTotals()
         {
             subTotal = 0;
@@ -102,6 +112,7 @@ namespace SmartMed.Forms
                 "Rs. " + grandTotal.ToString("N2");
         }
 
+        // Adds the selected medicine to the order cart.
         private void btnAddItem_Click(object sender, EventArgs e)
         {
             if (cmbMedicine.SelectedValue == null)
@@ -112,7 +123,8 @@ namespace SmartMed.Forms
 
             int quantity;
 
-            if (!int.TryParse(txtQuantity.Text.Trim(), out quantity) || quantity <= 0)
+            if (!int.TryParse(txtQuantity.Text.Trim(), out quantity) ||
+                quantity <= 0)
             {
                 MessageBox.Show("Please enter a valid quantity.");
                 txtQuantity.Focus();
@@ -140,6 +152,7 @@ namespace SmartMed.Forms
             int availableStock =
                 Convert.ToInt32(selectedMedicine["StockQuantity"]);
 
+            // Prevents adding more quantity than available stock.
             if (quantity > availableStock)
             {
                 MessageBox.Show(
@@ -151,6 +164,7 @@ namespace SmartMed.Forms
             decimal discountAmount;
             decimal taxAmount;
 
+            // OrderService handles business calculation for each order item.
             decimal total =
                 orderService.CalculateItemTotal(
                     unitPrice,
@@ -182,6 +196,7 @@ namespace SmartMed.Forms
             txtQuantity.Focus();
         }
 
+        // Creates the order object and saves it through the service layer.
         private void btnPlaceOrder_Click(object sender, EventArgs e)
         {
             if (cmbCustomer.SelectedValue == null)
@@ -220,16 +235,19 @@ namespace SmartMed.Forms
             ClearForm();
         }
 
+        // Clears the order form.
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearForm();
         }
 
+        // Recalculates totals when delivery fee changes.
         private void txtDeliveryFee_TextChanged(object sender, EventArgs e)
         {
             UpdateTotals();
         }
 
+        // Resets cart, fields and reloads medicine stock values.
         private void ClearForm()
         {
             cartItems.Clear();

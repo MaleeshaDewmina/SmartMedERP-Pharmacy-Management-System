@@ -6,14 +6,24 @@ using SmartMedERP.Models;
 
 namespace SmartMedERP.Repositories
 {
+    /*
+     * Handles database operations related to customers.
+     * This repository manages customer listing, searching, registration,
+     * profile updates, account status changes and password updates.
+     */
     public class CustomerRepository
     {
+        // Loads all customers with linked user account details.
         public DataTable GetAllCustomers()
         {
             using (SqlConnection con = Database.GetConnection())
             {
                 con.Open();
 
+                /*
+                 * Customers and Users are joined because customer profile
+                 * data and login account data are stored in separate tables.
+                 */
                 string query = @"
                     SELECT
                         C.CustomerId,
@@ -39,6 +49,7 @@ namespace SmartMedERP.Repositories
             }
         }
 
+        // Searches customers by name, username, email, phone, address or membership level.
         public DataTable SearchCustomers(string keyword)
         {
             using (SqlConnection con = Database.GetConnection())
@@ -69,6 +80,8 @@ namespace SmartMedERP.Repositories
                     ORDER BY C.CustomerId DESC";
 
                 SqlCommand cmd = new SqlCommand(query, con);
+
+                // Parameterized search prevents SQL injection.
                 cmd.Parameters.AddWithValue("@Keyword", "%" + keyword + "%");
 
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -79,7 +92,12 @@ namespace SmartMedERP.Repositories
             }
         }
 
-        public int AddUser(string username, string passwordHash, string email, string phone)
+        // Creates a new user account and returns the generated UserId.
+        public int AddUser(
+            string username,
+            string passwordHash,
+            string email,
+            string phone)
         {
             using (SqlConnection con = Database.GetConnection())
             {
@@ -104,6 +122,7 @@ namespace SmartMedERP.Repositories
             }
         }
 
+        // Creates the customer profile linked to the user account.
         public void AddCustomer(Customer customer)
         {
             using (SqlConnection con = Database.GetConnection())
@@ -128,6 +147,7 @@ namespace SmartMedERP.Repositories
             }
         }
 
+        // Assigns the Customer role to the newly created user.
         public void AddCustomerRole(int userId)
         {
             using (SqlConnection con = Database.GetConnection())
@@ -147,12 +167,17 @@ namespace SmartMedERP.Repositories
             }
         }
 
+        // Updates customer profile details across Users and Customers tables.
         public void UpdateCustomer(Customer customer)
         {
             using (SqlConnection con = Database.GetConnection())
             {
                 con.Open();
 
+                /*
+                 * User account details and customer profile details are updated
+                 * together using one SQL command.
+                 */
                 string query = @"
                     UPDATE Users
                     SET Email = @Email,
@@ -179,6 +204,7 @@ namespace SmartMedERP.Repositories
             }
         }
 
+        // Activates or deactivates a customer login account.
         public void ToggleCustomerStatus(int userId, bool isActive)
         {
             using (SqlConnection con = Database.GetConnection())
@@ -199,6 +225,7 @@ namespace SmartMedERP.Repositories
             }
         }
 
+        // Updates the customer password hash in the Users table.
         public void UpdateCustomerPassword(int userId, string passwordHash)
         {
             using (SqlConnection con = Database.GetConnection())
@@ -206,9 +233,9 @@ namespace SmartMedERP.Repositories
                 con.Open();
 
                 string query = @"
-            UPDATE Users
-            SET PasswordHash = @PasswordHash
-            WHERE UserId = @UserId";
+                    UPDATE Users
+                    SET PasswordHash = @PasswordHash
+                    WHERE UserId = @UserId";
 
                 SqlCommand cmd = new SqlCommand(query, con);
 

@@ -28,30 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.pnlBrand = new Guna.UI2.WinForms.Guna2Panel();
             this.lblSubtitle = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlLogin = new Guna.UI2.WinForms.Guna2Panel();
             this.btnRegister = new Guna.UI2.WinForms.Guna2Button();
-            this.lnkForgotPassword = new System.Windows.Forms.LinkLabel();
             this.btnLogin = new Guna.UI2.WinForms.Guna2Button();
             this.chkRememberMe = new Guna.UI2.WinForms.Guna2CheckBox();
             this.txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtUsername = new Guna.UI2.WinForms.Guna2TextBox();
             this.lblWelcome = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.pnlBrand.SuspendLayout();
             this.pnlLogin.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlBrand
             // 
-            this.pnlBrand.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
+            this.pnlBrand.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(61)))), ((int)(((byte)(140)))));
+            this.pnlBrand.Controls.Add(this.label2);
+            this.pnlBrand.Controls.Add(this.label1);
+            this.pnlBrand.Controls.Add(this.pictureBox1);
             this.pnlBrand.Controls.Add(this.lblSubtitle);
             this.pnlBrand.Controls.Add(this.lblTitle);
             this.pnlBrand.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlBrand.Location = new System.Drawing.Point(0, 0);
             this.pnlBrand.Name = "pnlBrand";
-            this.pnlBrand.Size = new System.Drawing.Size(501, 638);
+            this.pnlBrand.Size = new System.Drawing.Size(500, 653);
             this.pnlBrand.TabIndex = 0;
             this.pnlBrand.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlBrand_Paint);
             // 
@@ -60,7 +67,7 @@
             this.lblSubtitle.AutoSize = true;
             this.lblSubtitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.lblSubtitle.ForeColor = System.Drawing.Color.White;
-            this.lblSubtitle.Location = new System.Drawing.Point(95, 139);
+            this.lblSubtitle.Location = new System.Drawing.Point(77, 139);
             this.lblSubtitle.Name = "lblSubtitle";
             this.lblSubtitle.Size = new System.Drawing.Size(310, 28);
             this.lblSubtitle.TabIndex = 1;
@@ -71,7 +78,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(85, 79);
+            this.lblTitle.Location = new System.Drawing.Point(67, 79);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(326, 59);
             this.lblTitle.TabIndex = 0;
@@ -81,7 +88,6 @@
             // 
             this.pnlLogin.BorderRadius = 20;
             this.pnlLogin.Controls.Add(this.btnRegister);
-            this.pnlLogin.Controls.Add(this.lnkForgotPassword);
             this.pnlLogin.Controls.Add(this.btnLogin);
             this.pnlLogin.Controls.Add(this.chkRememberMe);
             this.pnlLogin.Controls.Add(this.txtPassword);
@@ -104,22 +110,12 @@
             this.btnRegister.FillColor = System.Drawing.Color.White;
             this.btnRegister.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnRegister.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.btnRegister.Location = new System.Drawing.Point(49, 397);
+            this.btnRegister.Location = new System.Drawing.Point(49, 387);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(320, 45);
             this.btnRegister.TabIndex = 8;
             this.btnRegister.Text = "Create Account";
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
-            // 
-            // lnkForgotPassword
-            // 
-            this.lnkForgotPassword.AutoSize = true;
-            this.lnkForgotPassword.Location = new System.Drawing.Point(157, 374);
-            this.lnkForgotPassword.Name = "lnkForgotPassword";
-            this.lnkForgotPassword.Size = new System.Drawing.Size(116, 16);
-            this.lnkForgotPassword.TabIndex = 7;
-            this.lnkForgotPassword.TabStop = true;
-            this.lnkForgotPassword.Text = "Forgot Password?";
             // 
             // btnLogin
             // 
@@ -130,6 +126,7 @@
             this.btnLogin.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnLogin.ForeColor = System.Drawing.Color.White;
+            this.btnLogin.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(61)))), ((int)(((byte)(140)))));
             this.btnLogin.Location = new System.Drawing.Point(49, 326);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(320, 45);
@@ -199,6 +196,7 @@
             // lblWelcome
             // 
             this.lblWelcome.AutoSize = true;
+            this.lblWelcome.BackColor = System.Drawing.Color.Transparent;
             this.lblWelcome.Font = new System.Drawing.Font("Segoe UI", 20F);
             this.lblWelcome.ForeColor = System.Drawing.Color.Black;
             this.lblWelcome.Location = new System.Drawing.Point(82, 52);
@@ -208,15 +206,50 @@
             this.lblWelcome.Text = "Welcome Back";
             this.lblWelcome.Click += new System.EventHandler(this.lblWelcome_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(55, 220);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(350, 110);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(50, 405);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(375, 84);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "✓ Reliable care at your fingertips\r\n✓ Quick access to pharmacy services\r\n✓ Truste" +
+    "d support for everyday health\r\n";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(3, 633);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(329, 17);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Contact us at +94 7586293 or smartmed@gmail.com.";
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1107, 638);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(248)))), ((int)(((byte)(252)))));
+            this.ClientSize = new System.Drawing.Size(1082, 653);
             this.Controls.Add(this.pnlLogin);
             this.Controls.Add(this.pnlBrand);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -226,6 +259,7 @@
             this.pnlBrand.PerformLayout();
             this.pnlLogin.ResumeLayout(false);
             this.pnlLogin.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -242,6 +276,8 @@
         private Guna.UI2.WinForms.Guna2CheckBox chkRememberMe;
         private Guna.UI2.WinForms.Guna2TextBox txtPassword;
         private Guna.UI2.WinForms.Guna2Button btnRegister;
-        private System.Windows.Forms.LinkLabel lnkForgotPassword;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportsForm));
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblReportType = new System.Windows.Forms.Label();
             this.cmbReportType = new System.Windows.Forms.ComboBox();
@@ -37,8 +38,8 @@
             this.dtpToDate = new System.Windows.Forms.DateTimePicker();
             this.btnGenerate = new Guna.UI2.WinForms.Guna2Button();
             this.pnlSalesCard = new Guna.UI2.WinForms.Guna2Panel();
-            this.lblSalesTitle = new System.Windows.Forms.Label();
             this.lblTotalSales = new System.Windows.Forms.Label();
+            this.lblSalesTitle = new System.Windows.Forms.Label();
             this.pnlOrdersCard = new Guna.UI2.WinForms.Guna2Panel();
             this.lblTotalOrders = new System.Windows.Forms.Label();
             this.lblOrdersTitle = new System.Windows.Forms.Label();
@@ -59,7 +60,7 @@
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Location = new System.Drawing.Point(30, 20);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(144, 46);
+            this.lblTitle.Size = new System.Drawing.Size(141, 45);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Reports";
             // 
@@ -153,16 +154,6 @@
             this.pnlSalesCard.Size = new System.Drawing.Size(300, 100);
             this.pnlSalesCard.TabIndex = 8;
             // 
-            // lblSalesTitle
-            // 
-            this.lblSalesTitle.AutoSize = true;
-            this.lblSalesTitle.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSalesTitle.Location = new System.Drawing.Point(20, 15);
-            this.lblSalesTitle.Name = "lblSalesTitle";
-            this.lblSalesTitle.Size = new System.Drawing.Size(89, 23);
-            this.lblSalesTitle.TabIndex = 0;
-            this.lblSalesTitle.Text = "Total Sales";
-            // 
             // lblTotalSales
             // 
             this.lblTotalSales.AutoSize = true;
@@ -172,6 +163,16 @@
             this.lblTotalSales.Size = new System.Drawing.Size(126, 41);
             this.lblTotalSales.TabIndex = 1;
             this.lblTotalSales.Text = "Rs. 0.00";
+            // 
+            // lblSalesTitle
+            // 
+            this.lblSalesTitle.AutoSize = true;
+            this.lblSalesTitle.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSalesTitle.Location = new System.Drawing.Point(20, 15);
+            this.lblSalesTitle.Name = "lblSalesTitle";
+            this.lblSalesTitle.Size = new System.Drawing.Size(89, 23);
+            this.lblSalesTitle.TabIndex = 0;
+            this.lblSalesTitle.Text = "Total Sales";
             // 
             // pnlOrdersCard
             // 
@@ -285,6 +286,7 @@
             this.Controls.Add(this.cmbReportType);
             this.Controls.Add(this.lblReportType);
             this.Controls.Add(this.lblTitle);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ReportsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reports";

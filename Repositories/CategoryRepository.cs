@@ -5,8 +5,14 @@ using SmartMedERP.Models;
 
 namespace SmartMedERP.Repositories
 {
+    /*
+     * Handles database operations for medicine categories.
+     * This repository supports category listing, searching,
+     * adding, updating and deleting.
+     */
     public class CategoryRepository
     {
+        // Loads all medicine categories from the database.
         public DataTable GetAllCategories()
         {
             using (SqlConnection con = Database.GetConnection())
@@ -34,6 +40,7 @@ namespace SmartMedERP.Repositories
             }
         }
 
+        // Searches categories by category name or description.
         public DataTable SearchCategories(string keyword)
         {
             using (SqlConnection con = Database.GetConnection())
@@ -54,6 +61,7 @@ namespace SmartMedERP.Repositories
                 SqlCommand cmd =
                     new SqlCommand(query, con);
 
+                // Parameterized search prevents SQL injection.
                 cmd.Parameters.AddWithValue(
                     "@Keyword",
                     "%" + keyword + "%");
@@ -70,6 +78,7 @@ namespace SmartMedERP.Repositories
             }
         }
 
+        // Adds a new medicine category.
         public void AddCategory(Category category)
         {
             using (SqlConnection con = Database.GetConnection())
@@ -101,6 +110,7 @@ namespace SmartMedERP.Repositories
             }
         }
 
+        // Updates an existing medicine category.
         public void UpdateCategory(Category category)
         {
             using (SqlConnection con = Database.GetConnection())
@@ -138,6 +148,7 @@ namespace SmartMedERP.Repositories
             }
         }
 
+        // Deletes a category by CategoryId.
         public void DeleteCategory(int categoryId)
         {
             using (SqlConnection con = Database.GetConnection())

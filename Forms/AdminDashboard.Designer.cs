@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboard));
             this.lblLoggedUser = new System.Windows.Forms.Label();
             this.pnlSidebar = new Guna.UI2.WinForms.Guna2Panel();
+            this.btnAuditLogs = new Guna.UI2.WinForms.Guna2Button();
+            this.btnOrderManagement = new Guna.UI2.WinForms.Guna2Button();
             this.btnSuppliers = new Guna.UI2.WinForms.Guna2Button();
             this.btnCategories = new Guna.UI2.WinForms.Guna2Button();
             this.lblAppName = new System.Windows.Forms.Label();
@@ -54,11 +56,11 @@
             this.lblCustomerCount = new System.Windows.Forms.Label();
             this.lblCustomersTitle = new System.Windows.Forms.Label();
             this.pnlMedicinesCard = new Guna.UI2.WinForms.Guna2Panel();
-            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.lblMedicineCount = new System.Windows.Forms.Label();
             this.lblMedicinesTitle = new System.Windows.Forms.Label();
             this.lblLoggedUsers = new System.Windows.Forms.Label();
             this.lblDashboardTitle = new System.Windows.Forms.Label();
+            this.btnAdminUsers = new Guna.UI2.WinForms.Guna2Button();
             this.pnlSidebar.SuspendLayout();
             this.pnlMain.SuspendLayout();
             this.pnlAlerts.SuspendLayout();
@@ -66,7 +68,6 @@
             this.pnlOrdersCard.SuspendLayout();
             this.pnlCustomersCard.SuspendLayout();
             this.pnlMedicinesCard.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblLoggedUser
@@ -80,6 +81,10 @@
             // 
             // pnlSidebar
             // 
+            this.pnlSidebar.Controls.Add(this.btnAdminUsers);
+            this.pnlSidebar.Controls.Add(this.btnAuditLogs);
+            this.pnlSidebar.Controls.Add(this.btnLogout);
+            this.pnlSidebar.Controls.Add(this.btnOrderManagement);
             this.pnlSidebar.Controls.Add(this.btnSuppliers);
             this.pnlSidebar.Controls.Add(this.btnCategories);
             this.pnlSidebar.Controls.Add(this.lblAppName);
@@ -87,9 +92,49 @@
             this.pnlSidebar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(138)))));
             this.pnlSidebar.Location = new System.Drawing.Point(0, 0);
             this.pnlSidebar.Name = "pnlSidebar";
-            this.pnlSidebar.Size = new System.Drawing.Size(230, 653);
+            this.pnlSidebar.Size = new System.Drawing.Size(353, 803);
             this.pnlSidebar.TabIndex = 1;
             this.pnlSidebar.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel1_Paint);
+            // 
+            // btnAuditLogs
+            // 
+            this.btnAuditLogs.Animated = true;
+            this.btnAuditLogs.BackColor = System.Drawing.Color.Transparent;
+            this.btnAuditLogs.BorderRadius = 8;
+            this.btnAuditLogs.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnAuditLogs.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnAuditLogs.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnAuditLogs.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnAuditLogs.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.btnAuditLogs.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold);
+            this.btnAuditLogs.ForeColor = System.Drawing.Color.White;
+            this.btnAuditLogs.Location = new System.Drawing.Point(20, 532);
+            this.btnAuditLogs.Name = "btnAuditLogs";
+            this.btnAuditLogs.Size = new System.Drawing.Size(304, 45);
+            this.btnAuditLogs.TabIndex = 11;
+            this.btnAuditLogs.Text = "Audit Logs";
+            this.btnAuditLogs.UseTransparentBackground = true;
+            this.btnAuditLogs.Click += new System.EventHandler(this.btnAuditLogs_Click);
+            // 
+            // btnOrderManagement
+            // 
+            this.btnOrderManagement.Animated = true;
+            this.btnOrderManagement.BackColor = System.Drawing.Color.Transparent;
+            this.btnOrderManagement.BorderRadius = 8;
+            this.btnOrderManagement.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnOrderManagement.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnOrderManagement.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnOrderManagement.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnOrderManagement.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.btnOrderManagement.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold);
+            this.btnOrderManagement.ForeColor = System.Drawing.Color.White;
+            this.btnOrderManagement.Location = new System.Drawing.Point(20, 481);
+            this.btnOrderManagement.Name = "btnOrderManagement";
+            this.btnOrderManagement.Size = new System.Drawing.Size(304, 45);
+            this.btnOrderManagement.TabIndex = 11;
+            this.btnOrderManagement.Text = "Order Management";
+            this.btnOrderManagement.UseTransparentBackground = true;
+            this.btnOrderManagement.Click += new System.EventHandler(this.btnOrderManagement_Click);
             // 
             // btnSuppliers
             // 
@@ -105,7 +150,7 @@
             this.btnSuppliers.ForeColor = System.Drawing.Color.White;
             this.btnSuppliers.Location = new System.Drawing.Point(20, 210);
             this.btnSuppliers.Name = "btnSuppliers";
-            this.btnSuppliers.Size = new System.Drawing.Size(190, 45);
+            this.btnSuppliers.Size = new System.Drawing.Size(304, 45);
             this.btnSuppliers.TabIndex = 4;
             this.btnSuppliers.Text = "Suppliers";
             this.btnSuppliers.UseTransparentBackground = true;
@@ -125,7 +170,7 @@
             this.btnCategories.ForeColor = System.Drawing.Color.White;
             this.btnCategories.Location = new System.Drawing.Point(20, 155);
             this.btnCategories.Name = "btnCategories";
-            this.btnCategories.Size = new System.Drawing.Size(190, 45);
+            this.btnCategories.Size = new System.Drawing.Size(304, 45);
             this.btnCategories.TabIndex = 3;
             this.btnCategories.Text = "Categories";
             this.btnCategories.UseTransparentBackground = true;
@@ -136,7 +181,7 @@
             this.lblAppName.AutoSize = true;
             this.lblAppName.BackColor = System.Drawing.Color.Transparent;
             this.lblAppName.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAppName.Location = new System.Drawing.Point(10, 16);
+            this.lblAppName.Location = new System.Drawing.Point(68, 25);
             this.lblAppName.Name = "lblAppName";
             this.lblAppName.Size = new System.Drawing.Size(214, 38);
             this.lblAppName.TabIndex = 2;
@@ -156,7 +201,7 @@
             this.btnDashboard.ForeColor = System.Drawing.Color.White;
             this.btnDashboard.Location = new System.Drawing.Point(20, 100);
             this.btnDashboard.Name = "btnDashboard";
-            this.btnDashboard.Size = new System.Drawing.Size(190, 45);
+            this.btnDashboard.Size = new System.Drawing.Size(304, 45);
             this.btnDashboard.TabIndex = 2;
             this.btnDashboard.Text = "Dashboard";
             this.btnDashboard.UseTransparentBackground = true;
@@ -175,7 +220,7 @@
             this.btnMedicines.ForeColor = System.Drawing.Color.White;
             this.btnMedicines.Location = new System.Drawing.Point(20, 265);
             this.btnMedicines.Name = "btnMedicines";
-            this.btnMedicines.Size = new System.Drawing.Size(190, 45);
+            this.btnMedicines.Size = new System.Drawing.Size(304, 45);
             this.btnMedicines.TabIndex = 5;
             this.btnMedicines.Text = "Medicines";
             this.btnMedicines.UseTransparentBackground = true;
@@ -195,7 +240,7 @@
             this.btnCustomers.ForeColor = System.Drawing.Color.White;
             this.btnCustomers.Location = new System.Drawing.Point(20, 320);
             this.btnCustomers.Name = "btnCustomers";
-            this.btnCustomers.Size = new System.Drawing.Size(190, 45);
+            this.btnCustomers.Size = new System.Drawing.Size(304, 45);
             this.btnCustomers.TabIndex = 6;
             this.btnCustomers.Text = "Customers";
             this.btnCustomers.UseTransparentBackground = true;
@@ -215,9 +260,9 @@
             this.btnOrders.ForeColor = System.Drawing.Color.White;
             this.btnOrders.Location = new System.Drawing.Point(20, 375);
             this.btnOrders.Name = "btnOrders";
-            this.btnOrders.Size = new System.Drawing.Size(190, 45);
+            this.btnOrders.Size = new System.Drawing.Size(304, 45);
             this.btnOrders.TabIndex = 7;
-            this.btnOrders.Text = "Orders";
+            this.btnOrders.Text = "POS";
             this.btnOrders.UseTransparentBackground = true;
             this.btnOrders.Click += new System.EventHandler(this.btnOrders_Click);
             // 
@@ -235,7 +280,7 @@
             this.btnReports.ForeColor = System.Drawing.Color.White;
             this.btnReports.Location = new System.Drawing.Point(20, 430);
             this.btnReports.Name = "btnReports";
-            this.btnReports.Size = new System.Drawing.Size(190, 45);
+            this.btnReports.Size = new System.Drawing.Size(304, 45);
             this.btnReports.TabIndex = 8;
             this.btnReports.Text = "Reports";
             this.btnReports.UseTransparentBackground = true;
@@ -250,15 +295,16 @@
             this.btnLogout.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnLogout.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnLogout.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnLogout.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.btnLogout.FillColor = System.Drawing.Color.Gray;
             this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnLogout.ForeColor = System.Drawing.Color.White;
-            this.btnLogout.Location = new System.Drawing.Point(20, 590);
+            this.btnLogout.Location = new System.Drawing.Point(20, 746);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(190, 45);
+            this.btnLogout.Size = new System.Drawing.Size(304, 45);
             this.btnLogout.TabIndex = 9;
             this.btnLogout.Text = "Logout";
             this.btnLogout.UseTransparentBackground = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // pnlMain
             // 
@@ -271,9 +317,9 @@
             this.pnlMain.Controls.Add(this.lblDashboardTitle);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(251)))));
-            this.pnlMain.Location = new System.Drawing.Point(230, 0);
+            this.pnlMain.Location = new System.Drawing.Point(353, 0);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(952, 653);
+            this.pnlMain.Size = new System.Drawing.Size(1129, 803);
             this.pnlMain.TabIndex = 10;
             this.pnlMain.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMain_Paint);
             // 
@@ -283,19 +329,18 @@
             this.pnlAlerts.Controls.Add(this.lblAlerts);
             this.pnlAlerts.Controls.Add(this.lblAlertsTitle);
             this.pnlAlerts.FillColor = System.Drawing.Color.White;
-            this.pnlAlerts.Location = new System.Drawing.Point(35, 270);
+            this.pnlAlerts.Location = new System.Drawing.Point(28, 262);
             this.pnlAlerts.Name = "pnlAlerts";
-            this.pnlAlerts.Size = new System.Drawing.Size(900, 330);
+            this.pnlAlerts.Size = new System.Drawing.Size(1058, 521);
             this.pnlAlerts.TabIndex = 6;
             // 
             // lblAlerts
             // 
-            this.lblAlerts.AutoSize = true;
             this.lblAlerts.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblAlerts.ForeColor = System.Drawing.Color.Black;
             this.lblAlerts.Location = new System.Drawing.Point(20, 70);
             this.lblAlerts.Name = "lblAlerts";
-            this.lblAlerts.Size = new System.Drawing.Size(111, 23);
+            this.lblAlerts.Size = new System.Drawing.Size(1016, 424);
             this.lblAlerts.TabIndex = 1;
             this.lblAlerts.Text = "No alerts yet.";
             // 
@@ -316,9 +361,9 @@
             this.pnlRevenueCard.Controls.Add(this.lblRevenue);
             this.pnlRevenueCard.Controls.Add(this.lblRevenueTitle);
             this.pnlRevenueCard.FillColor = System.Drawing.Color.White;
-            this.pnlRevenueCard.Location = new System.Drawing.Point(725, 120);
+            this.pnlRevenueCard.Location = new System.Drawing.Point(718, 112);
             this.pnlRevenueCard.Name = "pnlRevenueCard";
-            this.pnlRevenueCard.Size = new System.Drawing.Size(210, 120);
+            this.pnlRevenueCard.Size = new System.Drawing.Size(368, 120);
             this.pnlRevenueCard.TabIndex = 5;
             // 
             // lblRevenue
@@ -350,9 +395,9 @@
             this.pnlOrdersCard.Controls.Add(this.lblOrderCount);
             this.pnlOrdersCard.Controls.Add(this.lblOrdersTitle);
             this.pnlOrdersCard.FillColor = System.Drawing.Color.White;
-            this.pnlOrdersCard.Location = new System.Drawing.Point(495, 120);
+            this.pnlOrdersCard.Location = new System.Drawing.Point(488, 112);
             this.pnlOrdersCard.Name = "pnlOrdersCard";
-            this.pnlOrdersCard.Size = new System.Drawing.Size(210, 120);
+            this.pnlOrdersCard.Size = new System.Drawing.Size(211, 120);
             this.pnlOrdersCard.TabIndex = 4;
             // 
             // lblOrderCount
@@ -383,9 +428,9 @@
             this.pnlCustomersCard.Controls.Add(this.lblCustomerCount);
             this.pnlCustomersCard.Controls.Add(this.lblCustomersTitle);
             this.pnlCustomersCard.FillColor = System.Drawing.Color.White;
-            this.pnlCustomersCard.Location = new System.Drawing.Point(265, 120);
+            this.pnlCustomersCard.Location = new System.Drawing.Point(258, 112);
             this.pnlCustomersCard.Name = "pnlCustomersCard";
-            this.pnlCustomersCard.Size = new System.Drawing.Size(210, 120);
+            this.pnlCustomersCard.Size = new System.Drawing.Size(211, 120);
             this.pnlCustomersCard.TabIndex = 3;
             // 
             // lblCustomerCount
@@ -413,29 +458,13 @@
             // pnlMedicinesCard
             // 
             this.pnlMedicinesCard.BorderRadius = 15;
-            this.pnlMedicinesCard.Controls.Add(this.iconPictureBox1);
             this.pnlMedicinesCard.Controls.Add(this.lblMedicineCount);
             this.pnlMedicinesCard.Controls.Add(this.lblMedicinesTitle);
             this.pnlMedicinesCard.FillColor = System.Drawing.Color.White;
-            this.pnlMedicinesCard.Location = new System.Drawing.Point(35, 120);
+            this.pnlMedicinesCard.Location = new System.Drawing.Point(28, 112);
             this.pnlMedicinesCard.Name = "pnlMedicinesCard";
-            this.pnlMedicinesCard.Size = new System.Drawing.Size(210, 120);
+            this.pnlMedicinesCard.Size = new System.Drawing.Size(211, 120);
             this.pnlMedicinesCard.TabIndex = 2;
-            // 
-            // iconPictureBox1
-            // 
-            this.iconPictureBox1.BackColor = System.Drawing.Color.White;
-            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconPictureBox1.IconColor = System.Drawing.Color.White;
-            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.IconSize = 28;
-            this.iconPictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("iconPictureBox1.InitialImage")));
-            this.iconPictureBox1.Location = new System.Drawing.Point(155, 18);
-            this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(33, 28);
-            this.iconPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.iconPictureBox1.TabIndex = 2;
-            this.iconPictureBox1.TabStop = false;
             // 
             // lblMedicineCount
             // 
@@ -464,7 +493,7 @@
             this.lblLoggedUsers.AutoSize = true;
             this.lblLoggedUsers.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblLoggedUsers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
-            this.lblLoggedUsers.Location = new System.Drawing.Point(40, 86);
+            this.lblLoggedUsers.Location = new System.Drawing.Point(33, 78);
             this.lblLoggedUsers.Name = "lblLoggedUsers";
             this.lblLoggedUsers.Size = new System.Drawing.Size(137, 23);
             this.lblLoggedUsers.TabIndex = 1;
@@ -475,20 +504,39 @@
             this.lblDashboardTitle.AutoSize = true;
             this.lblDashboardTitle.Font = new System.Drawing.Font("Segoe UI", 22F, System.Drawing.FontStyle.Bold);
             this.lblDashboardTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.lblDashboardTitle.Location = new System.Drawing.Point(35, 25);
+            this.lblDashboardTitle.Location = new System.Drawing.Point(28, 17);
             this.lblDashboardTitle.Name = "lblDashboardTitle";
             this.lblDashboardTitle.Size = new System.Drawing.Size(211, 50);
             this.lblDashboardTitle.TabIndex = 0;
             this.lblDashboardTitle.Text = "Dashboard";
+            // 
+            // btnAdminUsers
+            // 
+            this.btnAdminUsers.Animated = true;
+            this.btnAdminUsers.BackColor = System.Drawing.Color.Transparent;
+            this.btnAdminUsers.BorderRadius = 8;
+            this.btnAdminUsers.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnAdminUsers.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnAdminUsers.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnAdminUsers.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnAdminUsers.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            this.btnAdminUsers.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold);
+            this.btnAdminUsers.ForeColor = System.Drawing.Color.White;
+            this.btnAdminUsers.Location = new System.Drawing.Point(20, 583);
+            this.btnAdminUsers.Name = "btnAdminUsers";
+            this.btnAdminUsers.Size = new System.Drawing.Size(304, 45);
+            this.btnAdminUsers.TabIndex = 11;
+            this.btnAdminUsers.Text = "Admin Users";
+            this.btnAdminUsers.UseTransparentBackground = true;
+            this.btnAdminUsers.Click += new System.EventHandler(this.btnAdminUsers_Click);
             // 
             // AdminDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1182, 653);
+            this.ClientSize = new System.Drawing.Size(1482, 803);
             this.Controls.Add(this.pnlMain);
-            this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnReports);
             this.Controls.Add(this.btnOrders);
             this.Controls.Add(this.btnCustomers);
@@ -498,6 +546,7 @@
             this.Controls.Add(this.lblLoggedUser);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "AdminDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -517,7 +566,6 @@
             this.pnlCustomersCard.PerformLayout();
             this.pnlMedicinesCard.ResumeLayout(false);
             this.pnlMedicinesCard.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -554,6 +602,8 @@
         private Guna.UI2.WinForms.Guna2Panel pnlAlerts;
         private System.Windows.Forms.Label lblAlerts;
         private System.Windows.Forms.Label lblAlertsTitle;
-        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
+        private Guna.UI2.WinForms.Guna2Button btnOrderManagement;
+        private Guna.UI2.WinForms.Guna2Button btnAuditLogs;
+        private Guna.UI2.WinForms.Guna2Button btnAdminUsers;
     }
 }

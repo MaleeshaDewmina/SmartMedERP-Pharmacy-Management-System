@@ -6,14 +6,23 @@ using SmartMedERP.Models;
 
 namespace SmartMedERP.Repositories
 {
+    /*
+     * Handles database operations for report generation.
+     * This repository provides sales, inventory, low stock and expiry report data.
+     */
     public class ReportRepository
     {
+        // Loads sales report data within the selected date range.
         public DataTable GetSalesReport(DateTime fromDate, DateTime toDate)
         {
             using (SqlConnection con = Database.GetConnection())
             {
                 con.Open();
 
+                /*
+                 * Orders are joined with Customers to show customer names
+                 * together with sales and order total information.
+                 */
                 string query = @"
                     SELECT 
                         O.OrderId,
@@ -31,6 +40,8 @@ namespace SmartMedERP.Repositories
                     ORDER BY O.OrderDate DESC";
 
                 SqlCommand cmd = new SqlCommand(query, con);
+
+                // Date parameters are used to safely filter report data.
                 cmd.Parameters.AddWithValue("@FromDate", fromDate.Date);
                 cmd.Parameters.AddWithValue("@ToDate", toDate.Date);
 
@@ -42,6 +53,7 @@ namespace SmartMedERP.Repositories
             }
         }
 
+        // Calculates total sales, total orders and total revenue for the selected period.
         public ReportSummary GetSalesSummary(DateTime fromDate, DateTime toDate)
         {
             using (SqlConnection con = Database.GetConnection())
@@ -64,6 +76,7 @@ namespace SmartMedERP.Repositories
 
                 if (reader.Read())
                 {
+                    // Map summary values into the ReportSummary model.
                     return new ReportSummary
                     {
                         TotalSales = Convert.ToDecimal(reader["TotalSales"]),
@@ -76,12 +89,17 @@ namespace SmartMedERP.Repositories
             }
         }
 
+        // Loads current medicine stock and inventory value information.
         public DataTable GetInventoryReport()
         {
             using (SqlConnection con = Database.GetConnection())
             {
                 con.Open();
 
+                /*
+                 * Medicines are joined with Categories and Suppliers
+                 * to provide a complete inventory view.
+                 */
                 string query = @"
                     SELECT
                         M.MedicineId,
@@ -107,6 +125,7 @@ namespace SmartMedERP.Repositories
             }
         }
 
+        // Loads medicines where stock is equal to or below reorder level.
         public DataTable GetLowStockReport()
         {
             using (SqlConnection con = Database.GetConnection())
@@ -133,6 +152,7 @@ namespace SmartMedERP.Repositories
             }
         }
 
+        // Loads medicines that will expire within the next 30 days.
         public DataTable GetExpiryReport()
         {
             using (SqlConnection con = Database.GetConnection())

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MedicineForm));
             this.txtStockQuantity = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtSellingPrice = new Guna.UI2.WinForms.Guna2TextBox();
             this.dgvMedicines = new System.Windows.Forms.DataGridView();
@@ -507,6 +508,7 @@
             this.Controls.Add(this.txtGenericName);
             this.Controls.Add(this.txtMedicineName);
             this.Controls.Add(this.lblTitle);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MedicineForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage Medicines";

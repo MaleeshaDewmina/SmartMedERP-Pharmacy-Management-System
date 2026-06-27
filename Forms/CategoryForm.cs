@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Data.SqlClient;
-using System.Windows.Controls;
 using System.Windows.Forms;
 using SmartMedERP.Models;
 using SmartMedERP.Repositories;
 
 namespace SmartMed.Forms
 {
+    /*
+     * Handles medicine category management.
+     * Admin users can add, update, search and delete medicine categories.
+     */
     public partial class CategoryForm : Form
     {
         private readonly CategoryRepository categoryRepository =
@@ -24,12 +27,14 @@ namespace SmartMed.Forms
             LoadCategories();
         }
 
+        // Loads all categories into the grid.
         private void LoadCategories()
         {
             dgvCategories.DataSource =
                 categoryRepository.GetAllCategories();
         }
 
+        // Clears input fields and resets the form state.
         private void ClearFields()
         {
             selectedCategoryId = 0;
@@ -40,6 +45,7 @@ namespace SmartMed.Forms
             txtCategoryName.Focus();
         }
 
+        // Validates required category input.
         private bool ValidateFields()
         {
             if (string.IsNullOrWhiteSpace(txtCategoryName.Text))
@@ -52,6 +58,7 @@ namespace SmartMed.Forms
             return true;
         }
 
+        // Saves a new medicine category.
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (!ValidateFields())
@@ -75,6 +82,7 @@ namespace SmartMed.Forms
             }
             catch (SqlException ex)
             {
+                // Handles duplicate category name errors.
                 if (ex.Number == 2627 || ex.Number == 2601)
                 {
                     MessageBox.Show("This category already exists.");
@@ -86,6 +94,7 @@ namespace SmartMed.Forms
             }
         }
 
+        // Updates the selected category.
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (selectedCategoryId == 0)
@@ -113,6 +122,7 @@ namespace SmartMed.Forms
             ClearFields();
         }
 
+        // Deletes the selected category after confirmation.
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (selectedCategoryId == 0)
@@ -139,12 +149,14 @@ namespace SmartMed.Forms
             }
         }
 
+        // Clears form fields and reloads all categories.
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearFields();
             LoadCategories();
         }
 
+        // Searches categories while the admin types.
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             string keyword = txtSearch.Text.Trim();
@@ -160,6 +172,7 @@ namespace SmartMed.Forms
             }
         }
 
+        // Loads selected category details into the form fields.
         private void dgvCategories_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
