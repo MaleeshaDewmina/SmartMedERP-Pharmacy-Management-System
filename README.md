@@ -371,10 +371,6 @@ docs/screenshots/
 
 ![Admin Order Management](docs/screenshots/admin-order-management.png)
 
-### Prescription Verification
-
-![Prescription Verification](docs/screenshots/prescription-verification.png)
-
 ### Invoice View
 
 ![Invoice View](docs/screenshots/invoice-view.png)
@@ -573,7 +569,8 @@ This project was developed for educational and portfolio purposes as part of the
 
 ---
 
-Author
+##Author
+
 Maleesha Dewmina
 
 BEng (Hons) Software Engineering - Top-up Student
